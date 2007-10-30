@@ -30,7 +30,7 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		1 => 'Hohenroda',
 		2 => 'Lahnstein',
 		3 => 'Bollmannsruh',
-		4 => 'mobil',
+		4 => 'Mobil',
 	);
 
 	var $oc_types=array(
@@ -47,7 +47,7 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 	);
 	
 	var $harness=array(
-		1 => 'Gelände',
+		1 => 'Site',
 		2 => 'Bus',
 		3 => 'KL-Lager',
 	);

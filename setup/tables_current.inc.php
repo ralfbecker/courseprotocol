@@ -41,7 +41,8 @@
 				'cp_groups' => array('type' => 'text','precision' => '255'),
 				'cp_num_participant' => array('type' => 'text','precision' => '255'),
 				'cp_defect_cleared' => array('type' => 'varchar','precision' => '255'),
-				'cp_defect_cleared_date' => array('type' => 'int','precision' => '8')
+				'cp_defect_cleared_date' => array('type' => 'int','precision' => '8'),
+				'cp_mobil_city' => array('type' => 'text','precision' => '255')
 			),
 			'pk' => array('cp_id'),
 			'fk' => array(),

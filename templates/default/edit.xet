@@ -19,7 +19,7 @@
 				<row>
 					<description value="Company"/>
 					<link-entry id="cp_company" options="addressbook"/>
-					<textbox size="30" maxlength="128" label="Department" id="cp_company_custom"/>
+					<textbox size="30" maxlength="128" label="Department" id="cp_company_custom" align="right"/>
 					<description/>
 				</row>
 				<row>
@@ -39,7 +39,7 @@
 					<menulist>
 						<menupopup id="cp_site"/>
 					</menulist>
-					<textbox label="Ort" disabled="true" id="${row}[cp_mobil_city]"/>
+					<textbox label="City" id="cp_mobil_city" size="30" maxlength="128" align="right"/>
 					<description/>
 				</row>
 				<row>
@@ -71,9 +71,7 @@
 				</row>
 				<row valign="top">
 					<description value="Consumable material"/>
-					<textbox multiline="true" id="cp_consumable_material" rows="5" cols="60"/>
-					<description/>
-					<description/>
+					<textbox multiline="true" id="cp_consumable_material" rows="5" cols="60" span="all"/>
 				</row>
 				<row height="50%">
 					<description/>

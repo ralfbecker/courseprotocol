@@ -15,7 +15,7 @@
 
 $setup_info['courseprotocol']['name']      = 'courseprotocol';
 $setup_info['courseprotocol']['title']     = 'Course Protocol';
-$setup_info['courseprotocol']['version']   = '1.5.008';  //anything you like, as long as it is fitting the schema of a version number
+$setup_info['courseprotocol']['version']   = '1.5.009';  //anything you like, as long as it is fitting the schema of a version number
 $setup_info['courseprotocol']['app_order'] = 100;     // at the end
 $setup_info['courseprotocol']['tables']    = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ'); // if there are any
 $setup_info['courseprotocol']['enable']    = 1;
@@ -46,6 +46,7 @@ $setup_info['courseprotocol']['hooks']['settings'] = 'courseprotocol'.'.cp_admin
 $setup_info['courseprotocol']['hooks']['admin'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['courseprotocol']['hooks']['sidebox_menu'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['courseprotocol']['hooks']['search_link'] = 'courseprotocol'.'.bocourseprotocol.search_link';
+
 
 
 
