@@ -49,7 +49,7 @@ class uicourseprotocol extends bocourseprotocol
 	
 	function edit($content=null)
 	{
-//		_debug_array($content);
+		//_debug_array($content);
 		if (is_array($content))
 		{
 			list($button) = @each($content['button']); unset($content['button']);
