@@ -34,7 +34,6 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 	);
 
 	var $oc_types=array(
-		0 => 'bitte wählen',
 		1 => 'Unfall',
 		2 => 'Beinahunfall',
 		3 => 'Zwischenfall',
