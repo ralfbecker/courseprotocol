@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="courseprotocol.index.rows" template="" lang="" group="0" version="1.5.001">
+		<grid width="100%">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th">
+					<nextmatch-header label="Company" id="cp_company" class="th"/>
+					<nextmatch-sortheader label="Calendar" id="cal_id" class="th"/>
+					<nextmatch-accountfilter label="Trainer" id="cp_trainer" class="th"/>
+					<nextmatch-filterheader label="Area" id="cp_site"/>
+					<nextmatch-sortheader label="Events" id="cp_events"/>
+					<nextmatch-header label="Cours description" id="cp_course_description"/>
+					<nextmatch-header label="Special occurrence" id="cp_course_occurrency"/>
+					<nextmatch-header label="Actions" id="Actions"/>
+				</row>
+				<row class="row" valign="top">
+					<vbox readonly="true">
+						<link-entry readonly="true" id="{$row}[cp_company]" options="addressbook"/>
+						<description id="{$row}[cp_company_custom]"/>
+					</vbox>
+					<link-entry readonly="true" id="{$row}[cal_id]" options="calendar"/>
+					<menulist>
+						<menupopup type="select-account" readonly="true" id="{$row}[cp_trainer]"/>
+					</menulist>
+					<menulist>
+						<menupopup readonly="true" id="{$row}[cp_site]"/>
+					</menulist>
+					<listbox type="select-cat" readonly="true" id="{$row}[cp_events]" rows="2"/>
+					<description id="{$row}[cp_course_description]"/>
+					<description id="${row}[cp_course_occurrency]"/>
+					<hbox>
+						<button label="Bearbeiten" onclick="window.open(egw::link('/index.php','menuaction=courseprotocol.uicourseprotocol.edit&amp;cp_id=$row_cont[cp_id]'),'_blank','dependent=yes,width=850,height=620,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[cp_id]]" image="edit"/>
+						<button label="Delete" onclick="return confirm('Delete this protocol');" id="delete[$row_cont[cp_id]]" image="delete" statustext="Delete this protocol"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.index" template="" lang="" group="0" version="1.5.001">
+		<grid width="100%" border="0">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description span="all" class="redItalic" align="center" id="msg"/>
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<nextmatch span="2" id="nm" options="courseprotocol.index.rows"/>
+					<description/>
+				</row>
+				<row>
+					<button label="Add" onclick="window.open(egw::link('/index.php','menuaction=courseprotocol.uicourseprotocol.edit'),'_blank','dependent=yes,width=800,height=600,scrollbars=yes,status=yes'); return false;" id="add"/>
+					<description span="all"/>
+				</row>
+				<row>
+					<template content="nm"/>
+					<description/>
+					<description/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+</overlay>
