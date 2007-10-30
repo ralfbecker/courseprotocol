@@ -44,11 +44,11 @@ number of participant	courseprotocol	de	Teilnehmeranzahl
 occurrence	common	de	Vorkommnisse
 occurrence description	courseprotocol	de	Beschreibung des Vorkommnisses
 occurrence type	courseprotocol	de	Ereignisart
-ort	courseprotocol	de	Ort
 participant	courseprotocol	de	Übung
 photo album	courseprotocol	de	Fotoablum
 protocol deleted	courseprotocol	de	Protokoll gelöscht
 protocol saved	courseprotocol	de	Protokoll gespeichert
+site	courseprotocol	de	Gelände
 special occurrence	courseprotocol	de	Besonder Vorkommnisse
 special occurrence 1	courseprotocol	de	Besonder Vorkommnisse 1
 trainer	courseprotocol	de	Trainer
