@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<overlay>
+	<template id="courseprotocol.edit.general" template="" lang="" group="0" version="1.5.001">
+		<grid height="500">
+			<columns>
+				<column width="15%"/>
+				<column width="30%"/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row>
+					<description value="Calendar"/>
+					<link-entry id="cal_id" options="calendar"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Company"/>
+					<link-entry id="cp_company" options="addressbook"/>
+					<textbox size="30" maxlength="128" label="Department" id="cp_company_custom"/>
+					<description/>
+				</row>
+				<row>
+					<description value="Number of participant"/>
+					<textbox id="cp_num_participant"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Number of groups"/>
+					<textbox id="cp_groups"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Area"/>
+					<menulist>
+						<menupopup id="cp_site"/>
+					</menulist>
+					<textbox label="Ort" disabled="true" id="${row}[cp_mobil_city]"/>
+					<description/>
+				</row>
+				<row>
+					<description value="Carabiner"/>
+					<int id="cp_carabiner"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Photo album"/>
+					<int id="cp_fotos"/>
+					<description/>
+					<description/>
+				</row>
+				<row valign="top">
+					<description value="Trainer"/>
+					<listbox type="select-account" id="cp_trainer" rows="4"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Additional trainer "/>
+					<textbox size="70" maxlength="128" span="all" id="cp_trainer_custom"/>
+				</row>
+				<row disabled="1">
+					<description value="Concept"/>
+					<link-to span="2" id="cp_linkto"/>
+					<description/>
+				</row>
+				<row valign="top">
+					<description value="Consumable material"/>
+					<textbox multiline="true" id="cp_consumable_material" rows="5" cols="60"/>
+					<description/>
+					<description/>
+				</row>
+				<row height="50%">
+					<description/>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.edit.desc" template="" lang="" group="0" version="1.5.001">
+		<grid height="500">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" height="20">
+					<description value="Cours description: (proccess, transfer,..)"/>
+				</row>
+				<row>
+					<description/>
+				</row>
+				<row>
+					<textbox multiline="true" id="cp_course_description" rows="25" cols="90"/>
+				</row>
+				<row height="30%">
+					<description/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.edit.events" template="" lang="" group="0" version="1.5.001">
+		<grid width="100%" height="500">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" valign="top" height="20">
+					<description span="all" value="Events"/>
+				</row>
+				<row height="200">
+					<tree-cat id="cp_events" options="13,1,width:99%"/>
+					<description/>
+					<description/>
+				</row>
+				<row class="th" height="20">
+					<description span="all" value="Material"/>
+				</row>
+				<row>
+					<grid>
+						<columns>
+							<column/>
+							<column/>
+						</columns>
+						<rows>
+							<row>
+								<description value="Helm"/>
+								<listbox id="cp_helmet" rows="3"/>
+							</row>
+							<row>
+								<description value="Harness"/>
+								<listbox id="cp_harness" rows="3"/>
+							</row>
+						</rows>
+					</grid>
+					<description/>
+					<description/>
+				</row>
+				<row class="th" height="20">
+					<description value="Defects"/>
+					<description value="Cleared"/>
+					<description value="Date"/>
+				</row>
+				<row>
+					<textbox multiline="true" id="cp_defects" rows="5" cols="60"/>
+					<listbox type="select-account" rows="3" id="cp_defect_cleared"/>
+					<date id="cp_defect_cleared_date"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.edit.occ" template="" lang="" group="0" version="1.5.001">
+		<grid height="500">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" height="20">
+					<description value="Create occurrence"/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<description value="Occurrence type"/>
+					<menulist>
+						<menupopup id="occ[cp_occ_type]"/>
+					</menulist>
+					<description/>
+				</row>
+				<row>
+					<description value="Date"/>
+					<date-time id="occ[cp_occ_date]"/>
+					<description value="Trainer"/>
+				</row>
+				<row valign="top">
+					<description value="Event"/>
+					<tree-cat id="occ[cp_occ_event]" options="13,1,width:99%"/>
+					<listbox type="select-account" id="occ[cp_occ_trainer]" rows="3"/>
+				</row>
+				<row>
+					<description/>
+					<description/>
+					<description/>
+				</row>
+				<row>
+					<grid>
+						<columns>
+							<column/>
+							<column/>
+						</columns>
+						<rows>
+							<row>
+								<description value="Occurrence description"/>
+								<description value="Cause analysis"/>
+							</row>
+							<row>
+								<textbox multiline="true" id="occ[cp_occ_desc]" rows="8" cols="40"/>
+								<textbox multiline="true" id="occ[cp_occ_analy]" rows="8" cols="40"/>
+							</row>
+						</rows>
+					</grid>
+				</row>
+				<row>
+					<grid width="100%">
+						<columns>
+							<column/>
+							<column/>
+							<column/>
+							<column/>
+							<column/>
+							<column/>
+						</columns>
+						<rows>
+							<row class="th">
+								<description value="Event"/>
+								<description value="Date"/>
+								<description value="Occurrence type"/>
+								<description value="Trainer"/>
+								<description value="Description"/>
+								<description value="Actions"/>
+							</row>
+							<row class="row" valign="top">
+								<menulist>
+									<menupopup type="select-cat" readonly="true" id="${row}[cp_occ_event]"/>
+								</menulist>
+								<date-time readonly="true" id="${row}[cp_occ_date]"/>
+								<menulist>
+									<menupopup readonly="true" id="${row}[cp_occ_type]"/>
+								</menulist>
+								<menulist>
+									<menupopup type="select-account" readonly="true" id="${row}[cp_occ_trainer]"/>
+								</menulist>
+								<textbox multiline="true" readonly="true" id="${row}[cp_occ_desc]" class="multiline"/>
+								<hbox>
+									<button label="Edit" id="edit[$row_cont[cp_occ_id]]" image="edit"/>
+									<button label="Delete" id="delete[$row_cont[cp_occ_id]]" image="delete"/>
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.edit.links" template="" lang="" group="0" version="1.5.001">
+		<grid height="500">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" height="20" disabled="@view">
+					<description value="Create new links"/>
+				</row>
+				<row>
+					<link-to id="cp_linkto"/>
+				</row>
+				<row class="th" height="20">
+					<description value="Existing links"/>
+				</row>
+				<row>
+					<link-list id="cp_linkto"/>
+				</row>
+				<row height="60%">
+					<description/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.edit.custom" template="" lang="" group="0" version="1.5.001">
+		<grid width="100%" height="500" class="row_on" spacing="0" padding="0" overflow="auto">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row class="th" height="20">
+					<description value="Custom fields"/>
+				</row>
+				<row height="100%">
+					<customfields/>
+				</row>
+			</rows>
+		</grid>
+	</template>
+	<template id="courseprotocol.edit" template="" lang="" group="0" version="1.5.001">
+		<grid>
+			<columns>
+				<column width="650"/>
+				<column width="350"/>
+			</columns>
+			<rows>
+				<row disabled="!@msg">
+					<description span="all" class="redItalic" no_lang="1" id="msg"/>
+					<description/>
+				</row>
+				<row valign="top">
+					<tabbox span="all">
+						<tabs>
+							<tab label="General" statustext="Customer name"/>
+							<tab label="Describtion" statustext="Description of the course"/>
+							<tab label="Events" statustext="Description of the Occurrence"/>
+							<tab label="Occurrence" statustext="Different Events"/>
+							<tab label="Links" statustext="Differnet links"/>
+							<tab label="Extra" statustext="Custom fields"/>
+						</tabs>
+						<tabpanels>
+							<template id="courseprotocol.edit.general"/>
+							<template id="courseprotocol.edit.desc"/>
+							<template id="courseprotocol.edit.events"/>
+							<template id="courseprotocol.edit.occ"/>
+							<template id="courseprotocol.edit.links"/>
+							<template id="courseprotocol.edit.custom"/>
+						</tabpanels>
+					</tabbox>
+				</row>
+				<row disabled="@hidebuttons">
+					<hbox>
+						<button span="4" label="Save" id="button[save]"/>
+						<button label="Apply" id="button[apply]"/>
+						<button label="Cancel" onclick="window.close();" id="button[cancel]"/>
+					</hbox>
+					<button label="Delete" align="right" onclick="return confirm('Delete this protocol');" id="button[delete]"/>
+				</row>
+			</rows>
+		</grid>
+		<description/>
+	</template>
+</overlay>
