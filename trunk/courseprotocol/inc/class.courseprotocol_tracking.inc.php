@@ -22,56 +22,56 @@ class courseprotocol_tracking extends bo_tracking
 	 *
 	 * @var string
 	 */
-	var $app = 'infolog';
+	var $app = 'courseprotocol';
 	/**
 	 * Name of the id-field, used as id in the history log (required!)
 	 *
 	 * @var string
 	 */
-	var $id_field = 'info_id';
+	var $id_field = 'cp_id';
 	/**
 	 * Name of the field with the creator id, if the creator of an entry should be notified
 	 *
 	 * @var string
 	 */
-	var $creator_field = 'info_owner';
+	var $creator_field = 'cp_creator';
 	/**
 	 * Name of the field with the id(s) of assinged users, if they should be notified
 	 *
 	 * @var string
 	 */
-	var $assigned_field = 'info_responsible';
+	var $assigned_field = 'cp_responsible';
 	/**
 	 * Translate field-names to 2-char history status
 	 *
 	 * @var array
 	 */
 	var $field2history = array(
-		'info_type'          => 'Ty',
-		'info_from'          => 'Fr',
-		'info_addr'          => 'Ad',
-		'info_link_id'       => 'Li',
-		'info_cat'           => 'Ca',
-		'info_priority'      => 'Pr',
-		'info_owner'         => 'Ow',
-		'info_access'        => 'Ac',
-		'info_status'        => 'St',
-		'info_percent'       => 'Pe',
-		'info_datecompleted' => 'Co',
-		'info_location'      => 'Lo',
-		'info_startdate'     => 'st',
-		'info_enddate'       => 'En',
-		'info_responsible'   => 'Re',
-		'info_subject'       => 'Su',
-		'info_des'           => 'De',
-		'info_location'      => 'Lo',
+		'cp_company'              => 'Cp',
+		'cp_date'                 => 'Da',
+		'cp_carabiner'            => 'Ca',
+		'cp_fotos'                => 'Ft',
+		'cp_trainer'              => 'Tr',
+		'cp_trainer_custom'       => 'Tc',
+		'cp_course_description'   => 'Od',
+		'info_access'             => 'Ac',
+		'info_status'             => 'St',
+		'info_percent'            => 'Pe',
+		'info_datecompleted'      => 'Co',
+		'info_location'           => 'Lo',
+		'info_startdate'          => 'st',
+		'info_enddate'            => 'En',
+		'info_responsible'        => 'Re',
+		'info_subject'            => 'Su',
+		'info_des'                => 'De',
+		'info_location'           => 'Lo',
 		// PM fields
-		'info_planned_time'  => 'pT',
-		'info_used_time'     => 'uT',
-		'pl_id'              => 'pL',
-		'info_price'         => 'pr',
+		'info_planned_time'       => 'pT',
+		'info_used_time'          => 'uT',
+		'pl_id'                   => 'pL',
+		'info_price'              => 'pr',
 		// all custom fields together
-		'custom'             => '#c',
+		'custom'                  => '#c',
 	);
 	/**
 	 * Translate field-names to labels
