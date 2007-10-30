@@ -264,6 +264,7 @@ class uicourseprotocol extends bocourseprotocol
 		$this->tmpl->exec('courseprotocol.uicourseprotocol.index',$content,array(
 			'cp_site' => $this->sites,
 			'cp_helmet' => $this->helmet,
+//			'cp_harness' =>$GLOBALS['egw']->tranlation->convert($this->harness,'utf-8'),
 			'cp_harness' =>$this->harness,
 		),array(),$preserv);
 		// the debug info will be displayed at the very end of the page
