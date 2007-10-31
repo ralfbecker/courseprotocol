@@ -60,6 +60,39 @@ class socourseprotocol extends so_sql
 		return parent::get_rows($query,$rows,$readonlys,$join);
 	}
 	
+	/**
+	 * searches db for rows matching searchcriteria
+	 *
+	 * '*' and '?' are replaced with sql-wildcards '%' and '_'
+	 *
+	 * For a union-query you call search for each query with $start=='UNION' and one more with only $order_by and $start set to run the union-query.
+	 *
+	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
+	 * @param boolean/string/array $only_keys=true True returns only keys, False returns all cols. or 
+	 *	comma seperated list or array of columns to return
+	 * @param string $order_by='' fieldnames + {ASC|DESC} separated by colons ',', can also contain a GROUP BY (if it contains ORDER BY)
+	 * @param string/array $extra_cols='' string or array of strings to be added to the SELECT, eg. "count(*) as num"
+	 * @param string $wildcard='' appended befor and after each criteria
+	 * @param boolean $empty=false False=empty criteria are ignored in query, True=empty have to be empty in row
+	 * @param string $op='AND' defaults to 'AND', can be set to 'OR' too, then criteria's are OR'ed together
+	 * @param mixed $start=false if != false, return only maxmatch rows begining with start, or array($start,$num), or 'UNION' for a part of a union query
+	 * @param array $filter=null if set (!=null) col-data pairs, to be and-ed (!) into the query without wildcards
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. "JOIN table2 ON x=y" or
+	 *	"LEFT JOIN table2 ON (x=y AND z=o)", Note: there's no quoting done on $join, you are responsible for it!!!
+	 * @param boolean $need_full_no_count=false If true an unlimited query is run to determine the total number of rows, default false
+	 * @return boolean/array of matching rows (the row is an array of the cols) or False
+	 */
+	function &search($criteria,$only_keys=True,$order_by='',$extra_cols='',$wildcard='',$empty=False,$op='AND',$start=false,$filter=null,$join='',$need_full_no_count=false)
+	{
+		if (!is_array($extra_cols))
+		{
+			$extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
+		}
+		$extra_cols[] = "(SELECT COUNT(*) FROM {$this->occ->table_name} WHERE {$this->occ->table_name}.cp_id=$this->table_name.cp_id) AS occurences";
+
+		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
+	}
+	
 	function save($keys=null)  // did _not_ ensure ACL
 	{
 		if (!($err = parent::save($keys)))
