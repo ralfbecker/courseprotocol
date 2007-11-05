@@ -121,4 +121,16 @@
 
 		return $GLOBALS['setup_info']['courseprotocol']['currentver'] = '1.5.009';
 	}
+
+
+	$test[] = '1.5.009';
+	function courseprotocol_upgrade1_5_009()
+	{
+		$GLOBALS['egw_setup']->oProc->AddColumn('egw_courseprotocol','cp_status',array(
+			'type' => 'varchar',
+			'precision' => '255'
+		));
+
+		return $GLOBALS['setup_info']['courseprotocol']['currentver'] = '1.5.010';
+	}
 ?>
