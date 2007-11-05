@@ -7,7 +7,7 @@
  * @package tracker
  * @copyright (c) 2007 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.infolog_tracking.inc.php 24102 2007-06-13 21:37:05Z ralfbecker $ 
+ * @version $Id: class.courseprotocol_tracking.inc.php 24102 2007-06-13 21:37:05Z ralfbecker $ 
  */
 
 require_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.bo_tracking.inc.php');
@@ -54,22 +54,19 @@ class courseprotocol_tracking extends bo_tracking
 		'cp_trainer'              => 'Tr',
 		'cp_trainer_custom'       => 'Tc',
 		'cp_course_description'   => 'Od',
-		'info_access'             => 'Ac',
-		'info_status'             => 'St',
-		'info_percent'            => 'Pe',
-		'info_datecompleted'      => 'Co',
-		'info_location'           => 'Lo',
-		'info_startdate'          => 'st',
-		'info_enddate'            => 'En',
-		'info_responsible'        => 'Re',
-		'info_subject'            => 'Su',
-		'info_des'                => 'De',
-		'info_location'           => 'Lo',
-		// PM fields
-		'info_planned_time'       => 'pT',
-		'info_used_time'          => 'uT',
-		'pl_id'                   => 'pL',
-		'info_price'              => 'pr',
+		'cp_company_custom'       => 'Cc',
+		'cp_course'               => 'Co',
+		'cp_site'                 => 'Si',
+		'cp_events'               => 'Ev',
+		'cal_id'                  => 'Lo',
+		'cp_consumable_material'  => 'Cm',
+		'cp_defects'              => 'Df',
+		'cp_helmet'               => 'Hm',
+		'cp_harness'              => 'Hn',
+		'cp_groups'               => 'Gr',
+		'icp_num_participant'     => 'Pa',
+		'cp_defect_cleared'       => 'Dc',
+		'cp_defect_cleared_date'  => 'Dd',
 		// all custom fields together
 		'custom'                  => '#c',
 	);
@@ -79,30 +76,28 @@ class courseprotocol_tracking extends bo_tracking
 	 * @var array
 	 */
 	var $field2label = array(
-		'info_type'      => 'Type',
-		'info_from'      => 'Contact',
-		'info_addr'      => 'Phone/Email',
-		'info_link_id'   => 'primary link',
-		'info_cat'       => 'Category',
-		'info_priority'  => 'Priority',
-		'info_owner'     => 'Owner',
-		'info_access'    => 'Access',
-		'info_status'    => 'Status',
-		'info_percent'   => 'Completed',
-		'info_datecompleted' => 'Date completed',
-		'info_location'  => 'Location',
-		'info_startdate' => 'Startdate',
-		'info_enddate'   => 'Enddate',
-		'info_responsible' => 'Responsible',
-		'info_subject'   => 'Subject',
-		'info_des'       => 'Description',
-		// PM fields
-		'info_planned_time'  => 'planned time',
-		'info_used_time'     => 'used time',
-		'pl_id'              => 'pricelist',
-		'info_price'         => 'price',
-		// custom fields
-		'custom'             => 'custom fields'
+		'cp_company'              => 'Company',
+		'cp_date'                 => 'Date',
+		'cp_carabiner'            => 'Carabiner',
+		'cp_fotos'                => 'Fotos',
+		'cp_trainer'              => 'Trainer',
+		'cp_trainer_custom'       => 'Trainer Custom',
+		'cp_course_description'   => 'Description',
+		'cp_company_custom'       => 'Company Custom',
+		'cp_course'               => 'Course',
+		'cp_site'                 => 'Site',
+		'cp_events'               => 'Event',
+		'cal_id'                  => 'Calendar',
+		'cp_consumable_material'  => 'Consumable matial',
+		'cp_defects'              => 'Defects',
+		'cp_helmet'               => 'Helmet',
+		'cp_harness'              => 'Harness',
+		'cp_groups'               => 'Groups',
+		'icp_num_participant'     => 'Participant',
+		'cp_defect_cleared'       => 'Defects cleared',
+		'cp_defect_cleared_date'  => 'Cleared date',
+		// all custom fields together
+		'custom'                  => 'custom fields',
 	);
 
 	/**
@@ -111,7 +106,7 @@ class courseprotocol_tracking extends bo_tracking
 	 * @access private
 	 * @var boinfolog
 	 */
-	var $infolog;
+	var $courselog;
 
 	/**
 	 * Constructor
@@ -119,11 +114,11 @@ class courseprotocol_tracking extends bo_tracking
 	 * @param botracker $botracker
 	 * @return tracker_tracking
 	 */
-	function infolog_tracking(&$boinfolog)
+	function courselog_tracking(&$bocourselog)
 	{
 		$this->bo_tracking();	// calling the constructor of the extended class
 	
-		$this->infolog =& $boinfolog;
+		$this->courselog =& $bocourselog;
 	}
 	
 	/**
@@ -153,17 +148,17 @@ class courseprotocol_tracking extends bo_tracking
 	 */
 	function get_subject($data,$old)
 	{
-		if (!$old || $old['info_status'] == 'deleted')
+		if (!$old || $old['cp_status'] == 'deleted')
 		{
-			$prefix = lang('New %1',lang($this->infolog->enums['type'][$data['info_type']]));
+			$prefix = lang('New %1',lang($this->courselog->enums['type'][$data['info_type']]));
 		}
-		elseif($data['info_status'] == 'deleted')
+		elseif($data['cp_status'] == 'deleted')
 		{
-			$prefix = lang('%1 deleted',lang($this->infolog->enums['type'][$data['info_type']]));
+			$prefix = lang('%1 deleted',lang($this->courselog->enums['type'][$data['info_type']]));
 		}
 		else
 		{
-			$prefix = lang('%1 modified',lang($this->infolog->enums['type'][$data['info_type']]));
+			$prefix = lang('%1 modified',lang($this->courselog->enums['type'][$data['info_type']]));
 		}
 		return $prefix.': '.$data['info_subject'];
 	}
@@ -179,20 +174,17 @@ class courseprotocol_tracking extends bo_tracking
 	{
 		if ($data['message']) return $data['message'];	// async notification
 
-		if (!$old || $old['info_status'] == 'deleted')
+		if (!$old || $old['cp_status'] == 'deleted')
 		{
-			return lang('New %1 created by %2 at %3',lang($this->infolog->enums['type'][$data['info_type']]),
-				$GLOBALS['egw']->common->grab_owner_name($this->infolog->user),$this->datetime(time()));
+			return lang('New %1 created by %2 at %3',$GLOBALS['egw']->common->grab_owner_name($this->courselog->user),$this->datetime(time()));
 		}
 		elseif($data['info_status'] == 'deleted')
 		{
-			return lang('%1 deleted by %2 at %3',lang($this->infolog->enums['type'][$data['info_type']]),
-				$GLOBALS['egw']->common->grab_owner_name($data['info_modifier']),
-				$this->datetime($data['info_datemodified']-$this->infolog->tz_offset_s));
+			return lang('%1 deleted by %2 at %3',$GLOBALS['egw']->common->grab_owner_name($data['cp_modifier']),
+				$this->datetime($data['cp_modified']-$this->courselog->tz_offset_s));
 		}
-		return lang('%1 modified by %2 at %3',lang($this->infolog->enums['type'][$data['info_type']]),
-			$GLOBALS['egw']->common->grab_owner_name($data['info_modifier']),
-			$this->datetime($data['info_datemodified']-$this->infolog->tz_offset_s));
+		return lang('%1 modified by %2 at %3',$GLOBALS['egw']->common->grab_owner_name($data['cp_modifier']),
+			$this->datetime($data['cp_modified']-$this->courselog->tz_offset_s));
 	}
 	
 	/**
@@ -216,25 +208,25 @@ class courseprotocol_tracking extends bo_tracking
 		if ($data['info_cat'] && !is_object($GLOBALS['egw']->categories))
 		{
 			require_once(EGW_API_INC.'/class.categories.inc.php');
-			$GLOBALS['egw']->categories =& new categories($this->infolog->user,'infolog');
+			$GLOBALS['egw']->categories =& new categories($this->courselog->user,'courselog');
 		}
-		if ($GLOBALS['egw_info']['user']['preferences']['infolog']['show_id'])
+		if ($GLOBALS['egw_info']['user']['preferences']['courselog']['show_id'])
 		{
 			$id = ' #'.$data['info_id'];
 		}
 		foreach(array(
-			'info_type'      => lang($this->infolog->enums['type'][$data['info_type']]).$id,
+			'info_type'      => lang($this->courselog->enums['type'][$data['info_type']]).$id,
 			'info_from'      => $data['info_from'],
 			'info_addr'      => $data['info_addr'],
 			'info_cat'       => $data['info_cat'] ? $GLOBALS['egw']->categories->id2name($data['info_cat']) : '',
-			'info_priority'  => lang($this->infolog->enums['priority'][$data['info_priority']]),
+			'info_priority'  => lang($this->courselog->enums['priority'][$data['info_priority']]),
 			'info_owner'     => $GLOBALS['egw']->common->grab_owner_name($data['info_owner']),
-			'info_status'    => lang($data['info_status']=='deleted'?'deleted':$this->infolog->status[$data['info_type']][$data['info_status']]),
+			'info_status'    => lang($data['info_status']=='deleted'?'deleted':$this->courselog->status[$data['info_type']][$data['info_status']]),
 			'info_percent'   => (int)$data['info_percent'].'%',
-			'info_datecompleted' => $data['info_datecomplete'] ? $this->datetime($data['info_datecompleted']-$this->infolog->tz_offset_s) : '',
+			'info_datecompleted' => $data['info_datecomplete'] ? $this->datetime($data['info_datecompleted']-$this->courselog->tz_offset_s) : '',
 			'info_location'  => $data['info_location'],
-			'info_startdate' => $data['info_startdate'] ? $this->datetime($data['info_startdate']-$this->infolog->tz_offset_s,null) : '',
-			'info_enddate'   => $data['info_enddate'] ? $this->datetime($data['info_enddate']-$this->infolog->tz_offset_s,false) : '',
+			'info_startdate' => $data['info_startdate'] ? $this->datetime($data['info_startdate']-$this->courselog->tz_offset_s,null) : '',
+			'info_enddate'   => $data['info_enddate'] ? $this->datetime($data['info_enddate']-$this->courselog->tz_offset_s,false) : '',
 			'info_responsible' => implode(', ',$responsible),
 			'info_subject'   => $data['info_subject'],
 		) as $name => $value)
@@ -250,9 +242,9 @@ class courseprotocol_tracking extends bo_tracking
 			'type'  => 'multiline',
 		);
 		// should be moved to bo_tracking because auf the different custom field types
-		if ($this->infolog->customfields)
+		if ($this->courselog->customfields)
 		{
-			foreach($this->infolog->customfields as $name => $field)
+			foreach($this->courselog->customfields as $name => $field)
 			{
 				if ($field['type2'] && !in_array($data['info_type'],explode(',',$field['type2']))) continue;	// different type
 				
@@ -285,7 +277,7 @@ class courseprotocol_tracking extends bo_tracking
 	function save_history($data,$old)
 	{
 		$data_custom = $old_custom = array();
-		foreach($this->infolog->customfields as $name => $custom)
+		foreach($this->courselog->customfields as $name => $custom)
 		{
 			if (isset($data['#'.$name]) && (string)$data['#'.$name]!=='') $data_custom[] = $custom['label'].': '.$data['#'.$name];
 			if (isset($old['#'.$name]) && (string)$old['#'.$name]!=='') $old_custom[] = $custom['label'].': '.$old['#'.$name];
