@@ -55,8 +55,6 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 	
     function bocourseprotocol()
     {
-      //entf�llt wegen extension der klasse
-      //$this->so =& CreateObject('test.sotest');
 	    $this->socourseprotocol();
 	    
 		if (!is_object($GLOBALS['egw']->datetime))
