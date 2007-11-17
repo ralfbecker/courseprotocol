@@ -1,5 +1,6 @@
 <?php
 require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.bocourseprotocol.inc.php');
+
 class uicourseprotocol extends bocourseprotocol
 {
 	var $public_functions = array(
@@ -49,6 +50,7 @@ class uicourseprotocol extends bocourseprotocol
 	
 	function edit($content=null)
 	{
+		$tabs = 'general|desc|events|occ|links|custom|history';
 		//_debug_array($content);
 		if (is_array($content))
 		{
@@ -161,15 +163,18 @@ class uicourseprotocol extends bocourseprotocol
 				}
 			}
 		}
+		$readonlys[$tabs]['history'] = true;
+		$readonlys[$tabs]['custom'] = !$this->config['customfields'];
+
 		$this->tmpl->read('courseprotocol.edit');
-		//_debug_array($content);
+
 		$this->tmpl->exec('courseprotocol.uicourseprotocol.edit',$content,array(
 			'cp_site' => $this->sites,
 			'cp_occ_type' => $this->oc_types,
 			'cp_helmet'=>$this->helmet,
 			'cp_harness' => $this->harness,	
 			
-		),array(),array(
+		),$readonlys,array(
 			'cp_id'=>$content['cp_id'],
 			'occ' => array('cp_occ_id' => $content['occ']['cp_occ_id']),
 			'occs' => $content['occs'],
@@ -234,7 +239,7 @@ class uicourseprotocol extends bocourseprotocol
             //'no_cat'         => True,                     // I  disable the cat-selectbox
             //'template'       =>   ,                     // I  template to use for the rows, if not set via options
             //'header_left'    =>   ,                     // I  template to show left of the range-value, left-aligned (optional)
-            //'header_right'   =>   ,                     // I  template to show right of the range-value, right-aligned (optional)
+            'header_right'   => 'courseprotocol.index.right', // I  template to show right of the range-value, right-aligned (optional)
             //'bottom_too'     => True,                   // I  show the nextmatch-line (arrows, filters, search, ...) again after the rows
             'never_hide'     => True,                     // I  never hide the nextmatch-line if less then maxmatch entrie
             'lettersearch'   => False,                    // I  show a lettersearch
@@ -360,9 +365,7 @@ class uicourseprotocol extends bocourseprotocol
 		$this->tmpl->set_cell_attribute('debuginfo','disabled',!$debug);
 		$this->tmpl->set_cell_attribute('myhrule','disabled',!$separator);
 		$this->tmpl->exec('courseprotocol.uicourseprotocol.occindex',$content,array(
-			'cp_site' => $this->sites,
-			'cp_helmet' => $this->helmet,
-			'cp_harness' =>$this->harness,		
+			'cp_occ_type' => $this->oc_types,	
 		),array(),$preserv);
 		// the debug info will be displayed at the very end of the page
 		//_debug_array($content);

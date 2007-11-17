@@ -171,7 +171,7 @@
 				<row>
 					<description value="Occurrence type"/>
 					<menulist>
-						<menupopup id="occ[cp_occ_type]"/>
+						<menupopup id="occ[cp_occ_type]" options="Select one"/>
 					</menulist>
 					<description/>
 				</row>
@@ -182,7 +182,7 @@
 				</row>
 				<row valign="top">
 					<description value="Event"/>
-					<tree-cat id="occ[cp_occ_event]" options="13,1,width:99%"/>
+					<tree-cat id="occ[cp_occ_event]" options=",1,width:99%"/>
 					<listbox type="select-account" id="occ[cp_occ_trainer]" rows="3"/>
 				</row>
 				<row>
@@ -209,7 +209,7 @@
 					</grid>
 				</row>
 				<row>
-					<grid width="100%">
+					<grid width="100%" id="occs">
 						<columns>
 							<column/>
 							<column/>
@@ -289,6 +289,18 @@
 			</rows>
 		</grid>
 	</template>
+	<template id="courseprotocol.edit.history" template="" lang="" group="0" version="1.5.001">
+		<grid width="100%" height="500" class="row_on" spacing="0" padding="0" overflow="auto">
+			<columns>
+				<column/>
+			</columns>
+			<rows>
+				<row height="100%">
+					<historylog id="history"/>
+				</row>
+			</rows>
+		</grid>
+	</template>
 	<template id="courseprotocol.edit" template="" lang="" group="0" version="1.5.001">
 		<grid>
 			<columns>
@@ -309,6 +321,7 @@
 							<tab label="Occurrence" statustext="Different Events"/>
 							<tab label="Links" statustext="Differnet links"/>
 							<tab label="Extra" statustext="Custom fields"/>
+							<tab label="History" statustext=" History"/>
 						</tabs>
 						<tabpanels>
 							<template id="courseprotocol.edit.general"/>
@@ -317,6 +330,7 @@
 							<template id="courseprotocol.edit.occ"/>
 							<template id="courseprotocol.edit.links"/>
 							<template id="courseprotocol.edit.custom"/>
+							<template id="courseprotocol.edit.history"/>
 						</tabpanels>
 					</tabbox>
 				</row>
