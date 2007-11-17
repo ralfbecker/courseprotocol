@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <!-- $Id$ -->
 <overlay>
+	<template id="courseprotocol.index.right" template="" lang="" group="0" version="1.5.001">
+		<buttononly label="Add" onclick="window.open(egw::link('/index.php','menuaction=courseprotocol.uicourseprotocol.edit'),'_blank','dependent=yes,width=800,height=600,scrollbars=yes,status=yes'); return false;" id="add"/>
+	</template>
 	<template id="courseprotocol.index.rows" template="" lang="" group="0" version="1.5.001">
 		<grid width="100%">
 			<columns>
@@ -16,7 +19,7 @@
 			<rows>
 				<row class="th">
 					<nextmatch-header label="Company" id="cp_company" class="th"/>
-					<nextmatch-sortheader label="Calendar" id="cal_id" class="th"/>
+					<nextmatch-sortheader label="Date" id="cp_date" class="th"/>
 					<nextmatch-accountfilter label="Trainer" id="cp_trainer" class="th"/>
 					<nextmatch-filterheader label="Area" id="cp_site"/>
 					<nextmatch-sortheader label="Events" id="cp_events"/>
@@ -26,10 +29,10 @@
 				</row>
 				<row class="row" valign="top">
 					<vbox readonly="true">
-						<link-entry readonly="true" id="{$row}[cp_company]" options="addressbook"/>
+						<link readonly="true" id="{$row}[cp_company]" options="addressbook"/>
 						<description id="{$row}[cp_company_custom]"/>
 					</vbox>
-					<link-entry readonly="true" id="{$row}[cal_id]" options="calendar"/>
+					<link readonly="true" id="{$row}[cal_id]" options="calendar"/>
 					<menulist>
 						<menupopup type="select-account" readonly="true" id="{$row}[cp_trainer]"/>
 					</menulist>
@@ -38,7 +41,7 @@
 					</menulist>
 					<listbox type="select-cat" readonly="true" id="{$row}[cp_events]" rows="2"/>
 					<description id="{$row}[cp_course_description]"/>
-					<description id="${row}[cp_course_occurrency]"/>
+					<description id="${row}[occurences]"/>
 					<hbox>
 						<button label="Bearbeiten" onclick="window.open(egw::link('/index.php','menuaction=courseprotocol.uicourseprotocol.edit&amp;cp_id=$row_cont[cp_id]'),'_blank','dependent=yes,width=850,height=620,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[cp_id]]" image="edit"/>
 						<button label="Delete" onclick="return confirm('Delete this protocol');" id="delete[$row_cont[cp_id]]" image="delete" statustext="Delete this protocol"/>
@@ -52,29 +55,21 @@
 			<columns>
 				<column/>
 				<column/>
-				<column/>
-				<column/>
-				<column/>
 			</columns>
 			<rows>
 				<row>
 					<description span="all" class="redItalic" align="center" id="msg"/>
 					<description/>
+				</row>
+				<row disabled="1">
 					<description/>
-					<description/>
-					<description/>
+					<template align="right" id="courseprotocol.index.right"/>
 				</row>
 				<row>
-					<nextmatch span="2" id="nm" options="courseprotocol.index.rows"/>
-					<description/>
+					<nextmatch span="all" id="nm" options="courseprotocol.index.rows"/>
 				</row>
 				<row>
 					<button label="Add" onclick="window.open(egw::link('/index.php','menuaction=courseprotocol.uicourseprotocol.edit'),'_blank','dependent=yes,width=800,height=600,scrollbars=yes,status=yes'); return false;" id="add"/>
-					<description span="all"/>
-				</row>
-				<row>
-					<template content="nm"/>
-					<description/>
 					<description/>
 				</row>
 			</rows>

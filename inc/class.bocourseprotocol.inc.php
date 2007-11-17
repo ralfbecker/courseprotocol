@@ -51,6 +51,8 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		3 => 'KL-Lager',
 	);
 	
+	var $config;
+	
 	
 	
     function bocourseprotocol()
@@ -63,7 +65,10 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		}
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now = time() + $this->tz_offset_s;	// time() is server-time and we need a user-time
-      
+		
+		$config = new config('courseprotocol');
+		$this->config = $config->read_repository();
+		unset($config);
     }
 
 	/**
@@ -213,6 +218,10 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		if ($data['cp_events'] && is_array($data['cp_events']))
 		{
 			$data['cp_events'] = implode(',',$data['cp_events']);
+		}
+		if ($data['cal_id'] && ($event = ExecMethod('calendar.bocal.read',$data['cal_id'])))
+		{
+			$data['cp_date'] = $event['start'];
 		}
 		return $data;
 	}
