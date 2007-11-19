@@ -174,9 +174,9 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 			'query' => 'courseprotocol.bocourseprotocol.link_query',
 			'title' => 'courseprotocol.bocourseprotocol.link_title',
 			'view'  => array(
-				'menuaction' => 'courseprotocol.bocourseprotocol.view',
+				'menuaction' => 'courseprotocol.uicourseprotocol.edit',
 			),
-			'view_id' => 'ts_id',
+			'view_id' => 'cp_id',
 			'view_popup'  => '850x620',
 			'add' => array(
 				'menuaction' => 'courseprotocol.uicourseprotocol.edit',
