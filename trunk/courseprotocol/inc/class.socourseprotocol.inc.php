@@ -89,7 +89,7 @@ class socourseprotocol extends so_sql
 			$extra_cols = $extra_cols ? explode(',',$extra_cols) : array();
 		}
 		$extra_cols[] = "(SELECT COUNT(*) FROM {$this->occ->table_name} WHERE {$this->occ->table_name}.cp_id=$this->table_name.cp_id) AS occurences";
-
+		$extra_cols[].= " (SELECT SUBSTRING(cp_occ_desc,1,50) FROM {$this->occ->table_name} WHERE {$this->occ->table_name}.cp_id=$this->table_name.cp_id LIMIT 1) AS occurences_txt";
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
 	
