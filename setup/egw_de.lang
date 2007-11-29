@@ -8,12 +8,14 @@ city	courseprotocol	de	Ort
 cleared	courseprotocol	de	Behoben von
 concept	courseprotocol	de	Konzept
 consumable material	courseprotocol	de	Verbrauchsmaterial
+count occurrence	courseprotocol	de	Anzahl Vorkommnisse
 cours description	courseprotocol	de	Beschreibung des Kurses
 cours description: (proccess, transfer,..)	courseprotocol	de	Beschreibung des Kurses(Prozeß,Transfer,..)
 courseprotocol	common	de	Kursprotokoll
 courseprotocol menu	courseprotocol	de	Kurseprotocol Menü
 create new links	courseprotocol	de	Neue Verknüpfung erstellen
 create occurrence	courseprotocol	de	Vorkommniss erstellen
+custom fields	courseprotocol	de	Benutzerdefinierte Felder
 customer name	courseprotocol	de	Kunde
 defects	courseprotocol	de	Aufgefallene Mängel
 delete failed!	courseprotocol	de	Löschen fehlgeschlagen!
@@ -41,6 +43,8 @@ low-events	courseprotocol	de	Low-Events
 material	courseprotocol	de	Material
 number of groups	courseprotocol	de	Gruppenanzahl
 number of participant	courseprotocol	de	Teilnehmeranzahl
+occurence deleted	courseprotocol	de	Vorkommniss gelöscht
+occurence deleted!	courseprotocol	de	Vorkommniss gelöscht!
 occurrence	common	de	Vorkommnisse
 occurrence description	courseprotocol	de	Beschreibung des Vorkommnisses
 occurrence type	courseprotocol	de	Ereignisart
@@ -51,6 +55,7 @@ protocol saved	courseprotocol	de	Protokoll gespeichert
 site	courseprotocol	de	Gelände
 special occurrence	courseprotocol	de	Besonder Vorkommnisse
 special occurrence 1	courseprotocol	de	Besonder Vorkommnisse 1
+special occurrence text	courseprotocol	de	Vorkommniss
 trainer	courseprotocol	de	Trainer
 used high-events	courseprotocol	de	Verwendete High-Events
 used low-events	courseprotocol	de	Verwendete Low-Events

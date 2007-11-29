@@ -8,12 +8,14 @@ city	courseprotocol	en	City
 cleared	courseprotocol	en	Cleared
 concept	courseprotocol	en	Concept
 consumable material	courseprotocol	en	Consumable material
+count occurrence	courseprotocol	en	count occurrence
 cours description	courseprotocol	en	Cours description
 cours description: (proccess, transfer,..)	courseprotocol	en	Cours description: (proccess, transfer,..)
 courseprotocol	common	en	Courseprotocol
 courseprotocol menu	courseprotocol	en	Courseprotocol menu
 create new links	courseprotocol	en	Create new links
 create occurrence	courseprotocol	en	Create occurrence
+custom fields	courseprotocol	en	Custom fields
 customer name	courseprotocol	en	Customer name
 defects	courseprotocol	en	Defects
 delete failed!	courseprotocol	en	Delete failed!
@@ -41,6 +43,8 @@ low-events	courseprotocol	en	Low-Events
 material	courseprotocol	en	Material
 number of groups	courseprotocol	en	Number of groups
 number of participant	courseprotocol	en	Number of participant
+occurence deleted	courseprotocol	en	Occurence deleted
+occurence deleted!	courseprotocol	en	Occurence deleted!
 occurrence	common	en	Occurrence
 occurrence description	courseprotocol	en	Occurrence description
 occurrence type	courseprotocol	en	Occurrence type
@@ -51,6 +55,7 @@ protocol saved	courseprotocol	en	Protocol saved
 site	courseprotocol	en	Site
 special occurrence	courseprotocol	en	Special occurrence
 special occurrence 1	courseprotocol	en	Special Occurrence 1
+special occurrence text	courseprotocol	en	Special occurrence text
 trainer	courseprotocol	en	Trainer
 used high-events	courseprotocol	en	Used High-Events
 used low-events	courseprotocol	en	Used Low-Events
