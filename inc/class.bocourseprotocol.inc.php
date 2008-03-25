@@ -127,7 +127,7 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		{
 			return $entry;
 		}
-		if ($entry['cal_id']) return lang('courseprotocol').' '.egw_links::title('calendar',$entry['cp_date']);
+		if ($entry['cal_id']) return lang('courseprotocol').' '.egw_link::title('calendar',$entry['cp_date']);
 		
 		return lang('courseprotocol').' '.date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'],$entry['cp_created']);
 		//return $entry['cp_title'];
