@@ -14,12 +14,6 @@ class uicourseprotocol extends bocourseprotocol
  	 * @var etemplate
 	 */
 	var $tmpl;
-	/**
-	 * Reference to the html clas
-	 * @var html;
-	 */
-	var $html;
-
  
 	/*
 		our original , non eTemplate approach
@@ -32,8 +26,7 @@ class uicourseprotocol extends bocourseprotocol
 	{
 		$GLOBALS['egw_info']['flags']['app_header']=lang('Courseprotocol');
 		// instantiation of etemplate as class variable
-		$this->tmpl =& CreateObject('etemplate.etemplate');
-		$this->html =& $GLOBALS['egw']->html;
+		$this->tmpl = new etemplate();
 		/*
 			since we extend the boclass, we do not have to instantiate an object of the boclass.
 			none the less, we have to call the constructor of that class, to ensure, everything 
@@ -41,11 +34,6 @@ class uicourseprotocol extends bocourseprotocol
 		*/
 		//$this->bo   =& CreateObject('test.bocourseprotocol');
 		$this->bocourseprotocol();
-		
-		if(!@is_object($GLOBALS['egw']->js))
-		{
-				$GLOBALS['egw']->js =& CreateObject('phpgwapi.javascript');
-		}
 	}
 	
 	function edit($content=null)
@@ -88,7 +76,7 @@ class uicourseprotocol extends bocourseprotocol
 						$content['cp_id'] = $this->data['cp_id'];
 						if (is_array($content['cp_linkto']['to_id']) && count($content['cp_linkto']['to_id']))
 						{
-							$GLOBALS['egw']->link->link('courseprotocol',$content['cp_id'],$content['cp_linkto']['to_id']);
+							egw_link::link('courseprotocol',$content['cp_id'],$content['cp_linkto']['to_id']);
 							$content['cp_linkto']['to_id'] = $content['cp_id'];
 						}
 						$content['msg'] = lang('Protocol saved');
@@ -154,11 +142,7 @@ class uicourseprotocol extends bocourseprotocol
 					$link_id = $link_ids[$n];
 					if (preg_match('/^[a-z_0-9-]+:[:a-z_0-9-]+$/i',$link_app.':'.$link_id))	// gard against XSS
 					{
-						if (!is_object($GLOBALS['egw']->link))
-						{
-							$GLOBALS['egw']->link =& CreateObject('phpgwapi.bolink');
-						}
-						$GLOBALS['egw']->link->link('courseprotocol',$content['cp_linkto']['to_id'],$link_app,$link_id);
+						egw_link::link('courseprotocol',$content['cp_linkto']['to_id'],$link_app,$link_id);
 					}
 				}
 			}

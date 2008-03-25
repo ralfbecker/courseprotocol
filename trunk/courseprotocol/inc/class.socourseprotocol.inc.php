@@ -47,10 +47,6 @@ class socourseprotocol extends so_sql
 		if ($query['cat_id'])
 		{
 			$cats = array();
-			if (!is_object($GLOBALS['egw']->categories))
-			{
-				$GLOBALS['egw']->categories =& CreateObject('phpgwapi.categories');
-			}
 			foreach($GLOBALS['egw']->categories->return_all_children($query['cat_id']) as $cat)
 			{
 				$cats[] = $this->db->concat("','",'cp_events',"','")." LIKE '%,".(int)$cat."%'";
