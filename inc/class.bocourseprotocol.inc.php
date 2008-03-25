@@ -59,16 +59,10 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
     {
 	    $this->socourseprotocol();
 	    
-		if (!is_object($GLOBALS['egw']->datetime))
-		{
-			$GLOBALS['egw']->datetime =& CreateObject('phpgwapi.datetime');
-		}
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now = time() + $this->tz_offset_s;	// time() is server-time and we need a user-time
 		
-		$config = new config('courseprotocol');
-		$this->config = $config->read_repository();
-		unset($config);
+		$this->config = config::read('courseprotocol');
     }
 
 	/**

@@ -205,11 +205,6 @@ class courseprotocol_tracking extends bo_tracking
 				$responsible[] = $GLOBALS['egw']->common->grab_owner_name($uid);
 			}
 		}
-		if ($data['info_cat'] && !is_object($GLOBALS['egw']->categories))
-		{
-			require_once(EGW_API_INC.'/class.categories.inc.php');
-			$GLOBALS['egw']->categories =& new categories($this->courselog->user,'courselog');
-		}
 		if ($GLOBALS['egw_info']['user']['preferences']['courselog']['show_id'])
 		{
 			$id = ' #'.$data['info_id'];
