@@ -1,6 +1,6 @@
 actions	courseprotocol	de	Befehle
-additional trainer	courseprotocol	de	Zusätzlicher Trainer
-area	courseprotocol	de	Gelände
+additional trainer	courseprotocol	de	ZusÃ¤tzlicher Trainer
+area	courseprotocol	de	GelÃ¤nde
 bearbeiten	courseprotocol	de	Bearbeiten
 carabiner	courseprotocol	de	Karabiner
 cause analysis	courseprotocol	de	Ursachenanalyse
@@ -10,49 +10,49 @@ concept	courseprotocol	de	Konzept
 consumable material	courseprotocol	de	Verbrauchsmaterial
 count occurrence	courseprotocol	de	Anzahl Vorkommnisse
 cours description	courseprotocol	de	Beschreibung des Kurses
-cours description: (proccess, transfer,..)	courseprotocol	de	Beschreibung des Kurses(Prozeß,Transfer,..)
+cours description: (proccess, transfer,..)	courseprotocol	de	Beschreibung des Kurses(ProzeÃŸ,Transfer,..)
 courseprotocol	common	de	Kursprotokoll
-courseprotocol menu	courseprotocol	de	Kurseprotocol Menü
-create new links	courseprotocol	de	Neue Verknüpfung erstellen
+courseprotocol menu	courseprotocol	de	Kurseprotocol MenÃ¼
+create new links	courseprotocol	de	Neue VerknÃ¼pfung erstellen
 create occurrence	courseprotocol	de	Vorkommniss erstellen
 custom fields	courseprotocol	de	Benutzerdefinierte Felder
 customer name	courseprotocol	de	Kunde
-defects	courseprotocol	de	Aufgefallene Mängel
-delete failed!	courseprotocol	de	Löschen fehlgeschlagen!
-delete this occurence	courseprotocol	de	Diesen Vorfall löschen?
-delete this protocol	courseprotocol	de	Dieses Protokoll löschen?
+defects	courseprotocol	de	Aufgefallene MÃ¤ngel
+delete failed!	courseprotocol	de	LÃ¶schen fehlgeschlagen!
+delete this occurence	courseprotocol	de	Diesen Vorfall lÃ¶schen?
+delete this protocol	courseprotocol	de	Dieses Protokoll lÃ¶schen?
 department	courseprotocol	de	Abteilung
 describtion	courseprotocol	de	Beschreibung
 description of the course	courseprotocol	de	Beschreibung des Kurses
 description of the occurrence	courseprotocol	de	Beschreibung des Vorkommnisses
 different events	courseprotocol	de	Verschiedene Events
 different high-events	courseprotocol	de	Verschiedene High-Events
-differnet links	courseprotocol	de	Verschiedene Verknüpfungen
+differnet links	courseprotocol	de	Verschiedene VerknÃ¼pfungen
 diffrent low-events	courseprotocol	de	Verschiedene Low-Events
 error saving!	courseprotocol	de	Fehler beim speichern!
-event	courseprotocol	de	Übung
-events	courseprotocol	de	Übungen
-existing links	courseprotocol	de	Bestehende Verknüpfungen
+event	courseprotocol	de	Ãœbung
+events	courseprotocol	de	Ãœbungen
+existing links	courseprotocol	de	Bestehende VerknÃ¼pfungen
 extra	courseprotocol	de	Extra
 general	courseprotocol	de	Allgemein
 harness	courseprotocol	de	Gurte
 helm	courseprotocol	de	Helme
 high-events	courseprotocol	de	High-Events
-links	courseprotocol	de	Verknüpfungen
+links	courseprotocol	de	VerknÃ¼pfungen
 low-events	courseprotocol	de	Low-Events
 material	courseprotocol	de	Material
 number of groups	courseprotocol	de	Gruppenanzahl
 number of participant	courseprotocol	de	Teilnehmeranzahl
-occurence deleted	courseprotocol	de	Vorkommniss gelöscht
-occurence deleted!	courseprotocol	de	Vorkommniss gelöscht!
+occurence deleted	courseprotocol	de	Vorkommniss gelÃ¶scht
+occurence deleted!	courseprotocol	de	Vorkommniss gelÃ¶scht!
 occurrence	common	de	Vorkommnisse
 occurrence description	courseprotocol	de	Beschreibung des Vorkommnisses
 occurrence type	courseprotocol	de	Ereignisart
-participant	courseprotocol	de	Übung
+participant	courseprotocol	de	Ãœbung
 photo album	courseprotocol	de	Fotoablum
-protocol deleted	courseprotocol	de	Protokoll gelöscht
+protocol deleted	courseprotocol	de	Protokoll gelÃ¶scht
 protocol saved	courseprotocol	de	Protokoll gespeichert
-site	courseprotocol	de	Gelände
+site	courseprotocol	de	GelÃ¤nde
 special occurrence	courseprotocol	de	Besonder Vorkommnisse
 special occurrence 1	courseprotocol	de	Besonder Vorkommnisse 1
 special occurrence text	courseprotocol	de	Vorkommniss
