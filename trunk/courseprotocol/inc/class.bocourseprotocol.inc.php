@@ -14,15 +14,15 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
      );
      var $timestamps=array('cp_dts');
 	/**
-	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time 
+	 * Offset in secconds between user and server-time,	it need to be add to a server-time to get the user-time
 	 * or substracted from a user-time to get the server-time
-	 * 
+	 *
 	 * @var int
 	 */
 	var $tz_offset_s;
 	/**
 	 * Current time as timestamp in user-time
-	 * 
+	 *
 	 * @var int
 	 */
 	var $now;
@@ -38,31 +38,31 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		2 => 'Beinahunfall',
 		3 => 'Zwischenfall',
 	);
-	
+
 	var $helmet=array(
 		1 => 'Blau',
 		2 => 'Rot',
 		3 => 'Weiss',
 	);
-	
+
 	var $harness=array(
 		1 => 'Site',
 		2 => 'Bus',
 		3 => 'KL-Lager',
 	);
-	
+
 	var $config;
-	
-	
-	
+
+
     function bocourseprotocol()
     {
 	    $this->socourseprotocol();
-	    
+
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now = time() + $this->tz_offset_s;	// time() is server-time and we need a user-time
-		
+
 		$this->config = config::read('courseprotocol');
+
     }
 
 	/**
@@ -93,19 +93,19 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		{
 			$data['cp_defect_cleared'] = explode(',',$data['cp_defect_cleared']);
 		}
-		
+
 		if ($data['occ']['cp_occ_trainer'])
 		{
 			$data['occ']['cp_occ_trainer'] = explode(',',$data['occ']['cp_occ_trainer']);
 		}
-		
+
 		return $data;
 	}
 
-	
+
 	/**
 	 * get title for an timesheet entry identified by $entry
-	 * 
+	 *
 	 * Is called as hook to participate in the linking
 	 *
 	 * @param int/array $entry int ts_id or array with timesheet entry
@@ -122,7 +122,7 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 			return $entry;
 		}
 		if ($entry['cal_id']) return lang('courseprotocol').' '.egw_link::title('calendar',$entry['cp_date']);
-		
+
 		return lang('courseprotocol').' '.date($GLOBALS['egw_info']['user']['preferences']['common']['dateformat'],$entry['cp_created']);
 		//return $entry['cp_title'];
 	}
@@ -149,9 +149,9 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		}
 		return $result;
 	}
-	
 
-	
+
+
 	/**
 	 * Hook called by link-class to include courseprotocol in the appregistry of the linkage
 	 *
@@ -176,8 +176,8 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 			'add_popup'  => '850x620',
 		);
 	}
-	
-		
+
+
 	/**
 	 * changes the data from your work-format to the db-format
 	 *
@@ -231,5 +231,24 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 			$this->data['cp_modified'] = $this->now;
 		}
 		return parent::save($data);
+	}
+
+	function check_acl($required,$data=null)
+	{
+		if (!$data)
+		{
+			$data =& $this->data;
+		}
+		if (!is_array($data))
+		{
+			$save_data = $this->data;
+			$data = $this->read($data,true);
+			$this->data = $save_data;
+
+			if (!$data) return null; 	// entry not found
+		}
+		$rights = $this->grants[$data['cp_creator']];
+
+		return $data && !!($rights & $required);
 	}
 }
