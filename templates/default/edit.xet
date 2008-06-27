@@ -301,7 +301,7 @@
 			</rows>
 		</grid>
 	</template>
-	<template id="courseprotocol.edit" template="" lang="" group="0" version="1.5.001">
+	<template id="courseprotocol.edit" template="" lang="" group="0" version="1.5.002">
 		<grid>
 			<columns>
 				<column width="650"/>

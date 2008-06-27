@@ -37,7 +37,7 @@
 					<textbox multiline="true" readonly="true" id="{$row}[cp_occ_analy]" class="multiline"/>
 					<hbox label="H Box">
 						<button label="Bearbeiten" onclick="window.open(egw::link('/index.php','menuaction=courseprotocol.uicourseprotocol.edit&amp;cp_id=$row_cont[cp_id]'),'_blank','dependent=yes,width=850,height=580,scrollbars=yes,status=yes'); return false;" id="edit[$row_cont[cp_id]]" image="edit"/>
-						<button label="Delete" onclick="return confirm('Delete this occurence');" id="delete[$row_cont[occ_cp_id]]" image="delete" statustext="Delete this occurence"/>
+						<button label="Delete" onclick="return confirm('Delete this occurence');" id="delete[$row_cont[cp_occ_id]]" image="delete" statustext="Delete this occurence"/>
 					</hbox>
 				</row>
 			</rows>

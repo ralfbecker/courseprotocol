@@ -7,7 +7,7 @@
  * @package courseprotocol
  * @copyright (c) 2007 by Stefan Becker <StefanBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.cp_admin_prefs_sidebox_hooks.inc.php 
+ * @version $Id: class.cp_admin_prefs_sidebox_hooks.inc.php
  */
 
 
@@ -53,13 +53,13 @@ class cp_admin_prefs_sidebox_hooks
 			display_sidebox($appname,lang('Courseprotocol menu'),$file);
 		}
 
-			
-			
+
+
 			$file = array(
 //				'Preferences'     => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uisettings.index&appname='.$appname),
-//				'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
+				'Grant Access'    => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uiaclprefs.index&acl_app='.$appname),
 //				'Edit Categories' => $GLOBALS['egw']->link('/index.php','menuaction=preferences.uicategories.index&cats_app=' . $appname . '&cats_level=True&global_cats=True'),
-	
+
 				);
 			if ($location == 'preferences')
 			{
@@ -80,7 +80,7 @@ class cp_admin_prefs_sidebox_hooks
 					'menuaction' => 'admin.uicategories.index',
 					'appname'    => $appname,
 					'global_cats'=> true)),
-					
+
 			);
 			if ($location == 'admin')
 			{
@@ -92,7 +92,7 @@ class cp_admin_prefs_sidebox_hooks
 			}
 		}
 	}
-	
+
 	/**
 	 * populates $GLOBALS['settings'] for the preferences
 	 */
@@ -102,7 +102,7 @@ class cp_admin_prefs_sidebox_hooks
 
 		return true;	// otherwise prefs say it cant find the file ;-)
 	}
-	
+
 	/**
 	 * Check if reasonable default preferences are set and set them if not
 	 *
@@ -133,4 +133,14 @@ class cp_admin_prefs_sidebox_hooks
 			$GLOBALS['egw']->preferences->save_repository(False,'default');
 		}
 	}
+	/**
+    * Register addressbook for group-acl
+	*
+    * @param array $args hook-params (not used)
+    * @return boolean|string true=standard group acl link, of string with link
+    */
+     static function group_acl($args)
+     {
+         return true;
+      }
 }

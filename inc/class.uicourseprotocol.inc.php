@@ -6,6 +6,7 @@ class uicourseprotocol extends bocourseprotocol
 	var $public_functions = array(
 		'index'	=> True,
 		'edit'	=> True,
+		'view'  => True,
 		'occindex'	=> True,
 		);
 	/**
@@ -14,7 +15,7 @@ class uicourseprotocol extends bocourseprotocol
  	 * @var etemplate
 	 */
 	var $tmpl;
- 
+
 	/*
 		our original , non eTemplate approach
 		Form with two inputfields, which is switched to a greeting form if there is some input in fname or sname
@@ -29,28 +30,52 @@ class uicourseprotocol extends bocourseprotocol
 		$this->tmpl = new etemplate();
 		/*
 			since we extend the boclass, we do not have to instantiate an object of the boclass.
-			none the less, we have to call the constructor of that class, to ensure, everything 
+			none the less, we have to call the constructor of that class, to ensure, everything
 			done there is done as we call the uicourseprotocol class
 		*/
 		//$this->bo   =& CreateObject('test.bocourseprotocol');
 		$this->bocourseprotocol();
 	}
-	
-	function edit($content=null)
+
+
+	function view($content=null)
+	{
+		return $this->edit($content,true);
+	}
+
+
+	function edit($content=null,$view=false)
 	{
 		$tabs = 'general|desc|events|occ|links|custom|history';
-		//_debug_array($content);
+		if (!is_array($content))
+		{
+			if ($view || (int)$_GET['cp_id'])
+			{
+				if (!$this->read((int)$_GET['cp_id']))
+				{
+					$GLOBALS['egw']->common->egw_header();
+					echo "<script>alert('".lang('Permission denied!!!')."'); window.close();</script>\n";
+					$GLOBALS['egw']->common->egw_exit();
+				}
+				if (!$view && !$this->check_acl(EGW_ACL_EDIT))
+				{
+				//	$view = true;
+				}
+			}
+		}
 		if (is_array($content))
 		{
+			$view = $content['view'];
+
 			list($button) = @each($content['button']); unset($content['button']);
-			
+
 			if ($content['occs']['edit'])
 			{
 				list($occ_id) = each($content['occs']['edit']);
 				$content['occ'] = $this->occ->read(array('cp_occ_id' => $occ_id));
 				unset($content['occs']['edit']);
 			}
-					
+
 			if ($content['occs']['delete'])
 			{
 				list($occ_id) = each($content['occs']['delete']);
@@ -69,6 +94,10 @@ class uicourseprotocol extends bocourseprotocol
 
 			switch($button)
 			{
+				case 'edit':
+					if ($this->check_acl(EGW_ACL_EDIT)) $view = false;
+					break;
+
 				case 'save':
 				case 'apply':
 					if ($this->save($content) == 0)
@@ -103,7 +132,7 @@ class uicourseprotocol extends bocourseprotocol
 						$content['msg'] = lang('Error saving!');
 					}
 					break;
-					
+
 				case 'delete':
 					if ($this->delete(array('cp_id'=>$content['cp_id'])))
 					{
@@ -149,22 +178,41 @@ class uicourseprotocol extends bocourseprotocol
 		}
 		$readonlys[$tabs]['history'] = true;
 		$readonlys[$tabs]['custom'] = !$this->config['customfields'];
+		$readonlys = array(
+			'button[delete]'   => !$this->data['cp_id'] || !$this->check_acl(EGW_ACL_DELETE),
+			'button[edit]'     => !$view || !$this->check_acl(EGW_ACL_EDIT),
+			'button[save]'     => $view,
+			'button[apply]'    => $view,
+			);
+		if ($view)
+		{foreach(array_merge(array_keys($this->data),array('pm_id','pl_id','link_to')) as $key)
+			{
+				$readonlys[$key] = true;
+			}
+			$readonlys['cp_linkto'] = true;
+			if (!$this->customfields) $readonlys[$tabs]['custom'] = true;	// suppress tab if there are not customfields
+
+		}
+
+		$GLOBALS['egw_info']['flags']['app_header'] = lang(courseprotocol).' - '.
+			($view ? lang('View') : ($this->data['cp_id'] ? lang('Edit') : lang('Add')));
 
 		$this->tmpl->read('courseprotocol.edit');
-
+		//_debug_array($readonlys);
 		$this->tmpl->exec('courseprotocol.uicourseprotocol.edit',$content,array(
 			'cp_site' => $this->sites,
 			'cp_occ_type' => $this->oc_types,
 			'cp_helmet'=>$this->helmet,
-			'cp_harness' => $this->harness,	
-			
+			'cp_harness' => $this->harness,
+
 		),$readonlys,array(
 			'cp_id'=>$content['cp_id'],
 			'occ' => array('cp_occ_id' => $content['occ']['cp_occ_id']),
 			'occs' => $content['occs'],
+			'view' => $view,
 		),2);
 	}
-	
+
 	/**
 	 * query rows for the nextmatch widget
 	 *
@@ -172,7 +220,7 @@ class uicourseprotocol extends bocourseprotocol
 	 *	For other keys like 'filter', 'cat_id' you have to reimplement this method in a derived class.
 	 * @param array &$rows returned rows/competitions
 	 * @param array &$readonlys eg. to disable buttons based on acl, not use here, maybe in a derived class
-	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
 	 *	"LEFT JOIN table2 ON (x=y)", Note: there's no quoting done on $join!
 	 * @return int total number of rows
 	 */
@@ -182,19 +230,20 @@ class uicourseprotocol extends bocourseprotocol
 
 		return parent::get_rows($query,$rows,$readonlys,$join);
 	}
-	
 
-	
-	
+
+
+
 	function index($content=null)
 	{
+
 		if (is_array($content))
 		{
 			if ($content['nm']['rows']['delete'])
 			{
 				list($id) = each($content['nm']['rows']['delete']);
 				unset($content['nm']['rows']['delete']);
-				
+
 				if ($this->delete(array('cp_id'=>$id)))
 				{
 					$content['msg'] = lang('Protocol deleted');
@@ -258,7 +307,7 @@ class uicourseprotocol extends bocourseprotocol
 		),array(),$preserv);
 		// the debug info will be displayed at the very end of the page
 		//_debug_array($content);
-		
+
 	}
 
 
@@ -269,7 +318,7 @@ class uicourseprotocol extends bocourseprotocol
 	 *	For other keys like 'filter', 'cat_id' you have to reimplement this method in a derived class.
 	 * @param array &$rows returned rows/competitions
 	 * @param array &$readonlys eg. to disable buttons based on acl, not use here, maybe in a derived class
-	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
 	 *	"LEFT JOIN table2 ON (x=y)", Note: there's no quoting done on $join!
 	 * @return int total number of rows
 	 */
@@ -279,8 +328,8 @@ class uicourseprotocol extends bocourseprotocol
 
 		return $this->occ->get_rows($query,$rows,$readonlys,$join);
 	}
-	
-	
+
+
 	function occindex($content=null)
 	{
 		if (is_array($content))
@@ -289,7 +338,7 @@ class uicourseprotocol extends bocourseprotocol
 			{
 				list($id) = each($content['nm']['rows']['delete']);
 				unset($content['nm']['rows']['delete']);
-				
+
 				if ($this->occ->delete(array('cp_occ_id'=>$id)))
 				{
 					$content['msg'] = lang('Occurence deleted');
@@ -343,20 +392,18 @@ class uicourseprotocol extends bocourseprotocol
             );
     }
 		$content['msg'] = $_GET['msg'];
-		
+
 		//_debug_array($content);
 		$this->tmpl->read('courseprotocol.occindex');
 		$this->tmpl->set_cell_attribute('debuginfo','disabled',!$debug);
 		$this->tmpl->set_cell_attribute('myhrule','disabled',!$separator);
 		$this->tmpl->exec('courseprotocol.uicourseprotocol.occindex',$content,array(
-			'cp_occ_type' => $this->oc_types,	
+			'cp_occ_type' => $this->oc_types,
 		),array(),$preserv);
 		// the debug info will be displayed at the very end of the page
 		//_debug_array($content);
-		
+
 	}
-
-
 }
 
 

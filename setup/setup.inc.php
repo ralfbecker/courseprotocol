@@ -1,5 +1,5 @@
-<?php
-        
+ $setup_info['addressbook']['hooks']['group_acl'] = 'addressbook_hooks::group_acl';<?php
+
 
 /**
  * CourseProtocol - setup definitions
@@ -10,7 +10,7 @@
  * @subpackage setup
  * @copyright (c) 2007 by Stefan Becker <StefanBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: setup.inc.php 23739 2007-10-15 09:10:36Z StefanBecker $ 
+ * @version $Id: setup.inc.php 23739 2007-10-15 09:10:36Z StefanBecker $
  */
 
 $setup_info['courseprotocol']['name']      = 'courseprotocol';
@@ -32,9 +32,9 @@ $setup_info['courseprotocol']['depends'][] = array(
 $setup_info['courseprotocol']['tables'] = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ');
 
 $setup_info['courseprotocol']['license']  = 'GPL';
-$setup_info['courseprotocol']['description'] = 
+$setup_info['courseprotocol']['description'] =
 'Coursprotocol for Outdoor Training.';
-$setup_info['courseprotocol']['note'] = 
+$setup_info['courseprotocol']['note'] =
 'The Coursprotocl application is sponsored by:<ul>
 <li> <a href="http://www.outdoor-training.de" target="_blank">Outdoor Unlimited Training GmbH</a></li>
 </ul>';
@@ -46,7 +46,7 @@ $setup_info['courseprotocol']['hooks']['settings'] = 'courseprotocol'.'.cp_admin
 $setup_info['courseprotocol']['hooks']['admin'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['courseprotocol']['hooks']['sidebox_menu'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['courseprotocol']['hooks']['search_link'] = 'courseprotocol'.'.bocourseprotocol.search_link';
-
+$setup_info['courseprotocol']['hooks']['group_acl'] = 'addressbook_hooks::group_acl';
 
 
 
