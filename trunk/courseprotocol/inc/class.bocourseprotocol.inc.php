@@ -53,6 +53,7 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 
 	var $config;
 
+	var $customfields=array();
 
     function bocourseprotocol()
     {
@@ -62,6 +63,11 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		$this->now = time() + $this->tz_offset_s;	// time() is server-time and we need a user-time
 
 		$this->config = config::read('courseprotocol');
+
+		if (isset($this->config['customfields']) && is_array($this->config['customfields']))
+		{
+			$this->customfields = $this->config['customfields'];
+		}
 
     }
 
