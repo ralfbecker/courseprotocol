@@ -215,7 +215,7 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 		{
 			$data['cp_events'] = implode(',',$data['cp_events']);
 		}
-		if ($data['cal_id'] && ($event = ExecMethod('calendar.bocal.read',$data['cal_id'])))
+		if ($data['cal_id'] && ($event = ExecMethod('calendar.calendar_bo.read',$data['cal_id'])))
 		{
 			$data['cp_date'] = $event['start'];
 		}
