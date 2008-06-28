@@ -191,6 +191,10 @@ class uicourseprotocol extends bocourseprotocol
 			}
 			$readonlys['cp_linkto'] = true;
 			if (!$this->customfields) $readonlys[$tabs]['custom'] = true;	// suppress tab if there are not customfields
+			foreach (array_keys($this->customfields) as $key)
+			{
+				$readonlys['#'.$key] = true;
+			}
 
 		}
 
