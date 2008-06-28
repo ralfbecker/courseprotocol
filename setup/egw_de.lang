@@ -49,7 +49,7 @@ occurrence	common	de	Vorkommnisse
 occurrence description	courseprotocol	de	Beschreibung des Vorkommnisses
 occurrence type	courseprotocol	de	Ereignisart
 participant	courseprotocol	de	Übung
-photo album	courseprotocol	de	Fotoablum
+photo album	courseprotocol	de	Fotoalbum
 protocol deleted	courseprotocol	de	Protokoll gelöscht
 protocol saved	courseprotocol	de	Protokoll gespeichert
 site	courseprotocol	de	Gelände
