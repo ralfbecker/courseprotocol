@@ -214,6 +214,7 @@ class uicourseprotocol extends bocourseprotocol
 			'occ' => array('cp_occ_id' => $content['occ']['cp_occ_id']),
 			'occs' => $content['occs'],
 			'view' => $view,
+			'cp_events' => $content['cp_events'],
 		),2);
 	}
 
