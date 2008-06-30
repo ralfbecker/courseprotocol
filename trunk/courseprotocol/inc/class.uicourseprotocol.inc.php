@@ -185,7 +185,8 @@ class uicourseprotocol extends bocourseprotocol
 			'button[apply]'    => $view,
 			);
 		if ($view)
-		{foreach(array_merge(array_keys($this->data),array('pm_id','pl_id','link_to')) as $key)
+		{
+			foreach(array_merge(array_keys($this->data),array('pm_id','pl_id','link_to')) as $key)
 			{
 				$readonlys[$key] = true;
 			}
@@ -195,7 +196,10 @@ class uicourseprotocol extends bocourseprotocol
 			{
 				$readonlys['#'.$key] = true;
 			}
-
+			foreach(array('cp_occ_id','cp_id','cp_occ_type','cp_occ_event','cp_occ_trainer','cp_occ_desc','cp_occ_analy','cp_occ_date') as $name)
+			{
+				$readonlys["occ[$name]"] = true;
+			}
 		}
 
 		$GLOBALS['egw_info']['flags']['app_header'] = lang(courseprotocol).' - '.
