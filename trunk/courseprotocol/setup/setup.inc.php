@@ -1,4 +1,4 @@
- $setup_info['addressbook']['hooks']['group_acl'] = 'addressbook_hooks::group_acl';<?php
+<?php
 
 
 /**
@@ -46,42 +46,4 @@ $setup_info['courseprotocol']['hooks']['settings'] = 'courseprotocol'.'.cp_admin
 $setup_info['courseprotocol']['hooks']['admin'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['courseprotocol']['hooks']['sidebox_menu'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
 $setup_info['courseprotocol']['hooks']['search_link'] = 'courseprotocol'.'.bocourseprotocol.search_link';
-$setup_info['courseprotocol']['hooks']['group_acl'] = 'addressbook_hooks::group_acl';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$setup_info['courseprotocol']['hooks']['group_acl'] = 'cp_admin_prefs_sidebox_hooks::group_acl';
