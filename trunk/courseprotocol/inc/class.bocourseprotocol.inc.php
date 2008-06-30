@@ -100,6 +100,11 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 			$data['cp_defect_cleared'] = explode(',',$data['cp_defect_cleared']);
 		}
 
+		if ($data['cp_events'])
+		{
+			$data['cp_events'] = explode(',',$data['cp_events']);
+		}
+
 		if ($data['occ']['cp_occ_trainer'])
 		{
 			$data['occ']['cp_occ_trainer'] = explode(',',$data['occ']['cp_occ_trainer']);
