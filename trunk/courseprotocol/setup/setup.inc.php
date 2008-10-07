@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * CourseProtocol - setup definitions
  *
@@ -15,7 +13,7 @@
 
 $setup_info['courseprotocol']['name']      = 'courseprotocol';
 $setup_info['courseprotocol']['title']     = 'Course Protocol';
-$setup_info['courseprotocol']['version']   = '1.5.010';  //anything you like, as long as it is fitting the schema of a version number
+$setup_info['courseprotocol']['version']   = '1.6';
 $setup_info['courseprotocol']['app_order'] = 100;     // at the end
 $setup_info['courseprotocol']['tables']    = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ'); // if there are any
 $setup_info['courseprotocol']['enable']    = 1;
@@ -23,11 +21,11 @@ $setup_info['courseprotocol']['enable']    = 1;
 /* Dependencies for this app to work */
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'phpgwapi',
-		'versions' => Array('1.3','1.4','1.5')
+		'versions' => Array('1.5','1.6','1.7')
 	);
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'etemplate',
-		'versions' => Array('1.3','1.4','1.5')
+		'versions' => Array('1.5','1.6','1.7')
 	);
 $setup_info['courseprotocol']['tables'] = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ');
 
