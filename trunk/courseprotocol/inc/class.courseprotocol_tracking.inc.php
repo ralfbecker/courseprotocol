@@ -7,7 +7,7 @@
  * @package tracker
  * @copyright (c) 2007 by Ralf Becker <RalfBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
- * @version $Id: class.courseprotocol_tracking.inc.php 24102 2007-06-13 21:37:05Z ralfbecker $ 
+ * @version $Id: class.courseprotocol_tracking.inc.php 24102 2007-06-13 21:37:05Z ralfbecker $
  */
 
 require_once(EGW_INCLUDE_ROOT.'/etemplate/inc/class.bo_tracking.inc.php');
@@ -102,7 +102,7 @@ class courseprotocol_tracking extends bo_tracking
 
 	/**
 	 * Instance of the boinfolog class calling us
-	 * 
+	 *
 	 * @access private
 	 * @var boinfolog
 	 */
@@ -114,32 +114,16 @@ class courseprotocol_tracking extends bo_tracking
 	 * @param botracker $botracker
 	 * @return tracker_tracking
 	 */
-	function courselog_tracking(&$bocourselog)
+	function __construct(&$bocourselog)
 	{
-		$this->bo_tracking();	// calling the constructor of the extended class
-	
+		parent::__construct();	// calling the constructor of the extended class
+
 		$this->courselog =& $bocourselog;
 	}
-	
-	/**
-	 * Get a notification-config value
-	 *
-	 * @param string $what
-	 * 	- 'copy' array of email addresses notifications should be copied too, can depend on $data
-	 *  - 'lang' string lang code for copy mail
-	 *  - 'sender' string send email address
-	 * @param array $data current entry
-	 * @param array $old=null old/last state of the entry or null for a new entry
-	 * @return mixed
-	 */
-	function get_config($name,$data,$old)
-	{
-		return null;
-	}
-	
+
 	/**
 	 * Get the subject for a given entry
-	 * 
+	 *
 	 * Reimpleneted to use a New|deleted|modified prefix.
 	 *
 	 * @param array $data
@@ -165,7 +149,7 @@ class courseprotocol_tracking extends bo_tracking
 
 	/**
 	 * Get the modified / new message (1. line of mail body) for a given entry, can be reimplemented
-	 * 
+	 *
 	 * @param array $data
 	 * @param array $old
 	 * @return string
@@ -186,10 +170,10 @@ class courseprotocol_tracking extends bo_tracking
 		return lang('%1 modified by %2 at %3',$GLOBALS['egw']->common->grab_owner_name($data['cp_modifier']),
 			$this->datetime($data['cp_modified']-$this->courselog->tz_offset_s));
 	}
-	
+
 	/**
 	 * Get the details of an entry
-	 * 
+	 *
 	 * @param array $data
 	 * @param string $datetime_format of user to notify, eg. 'Y-m-d H:i'
 	 * @param int $tz_offset_s offset in sec to be add to server-time to get the user-time of the user to notify
@@ -242,7 +226,7 @@ class courseprotocol_tracking extends bo_tracking
 			foreach($this->courselog->customfields as $name => $field)
 			{
 				if ($field['type2'] && !in_array($data['info_type'],explode(',',$field['type2']))) continue;	// different type
-				
+
 				if (!$header_done)
 				{
 					$details['custom'] = array(
@@ -259,12 +243,12 @@ class courseprotocol_tracking extends bo_tracking
 		}
 		return $details;
 	}
-	
+
 	/**
 	 * Save changes to the history log
 	 *
 	 * Reimplemented to store all customfields in a single field, as the history-log has only 2-char field-ids
-	 * 
+	 *
 	 * @param array $data current entry
 	 * @param array $old=null old/last state of the entry or null for a new entry
 	 * @param int number of log-entries made
@@ -279,7 +263,7 @@ class courseprotocol_tracking extends bo_tracking
 		}
 		$data['custom'] = implode("\n",$data_custom);
 		$old['custom'] = implode("\n",$old_custom);
-		
+
 		return parent::save_history($data,$old);
 	}
 }
