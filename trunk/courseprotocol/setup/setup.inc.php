@@ -19,6 +19,11 @@ $setup_info['courseprotocol']['tables']    = array('egw_courseprotocol','egw_cou
 $setup_info['courseprotocol']['enable']    = 1;
 $setup_info['courseprotocol']['index']     = 'courseprotocol.uicourseprotocol.index';
 
+$setup_info['courseprotocol']['author'] = $setup_info['courseprotocol']['maintainer'] = array(
+	'name'  => 'Stefan Becker',
+	'email' => 'stefanbecker@outdoor-training.de'
+);
+
 /* Dependencies for this app to work */
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'phpgwapi',
