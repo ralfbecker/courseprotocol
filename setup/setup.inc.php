@@ -4,7 +4,7 @@
  *
  * @link http://www.egroupware.org
  * @author Stefan Becker <stefanBecker-AT-outdoor-training.de>
- * @packagecourseprotocol
+ * @package courseprotocol
  * @subpackage setup
  * @copyright (c) 2007 by Stefan Becker <StefanBecker-AT-outdoor-training.de>
  * @license http://opensource.org/licenses/gpl-license.php GPL - GNU General Public License
@@ -17,6 +17,7 @@ $setup_info['courseprotocol']['version']   = '1.6';
 $setup_info['courseprotocol']['app_order'] = 100;     // at the end
 $setup_info['courseprotocol']['tables']    = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ'); // if there are any
 $setup_info['courseprotocol']['enable']    = 1;
+$setup_info['courseprotocol']['index']     = 'courseprotocol.uicourseprotocol.index';
 
 /* Dependencies for this app to work */
 $setup_info['courseprotocol']['depends'][] = array(
