@@ -18,12 +18,9 @@ class cp_admin_prefs_sidebox_hooks
 	);
 	var $config = array();
 
-	function pm_admin_prefs_sidebox_hooks()
+	function __construct()
 	{
-		$config =& CreateObject('phpgwapi.config','courseprotocol');
-		$config->read_repository();
-		$this->config =& $config->config_data;
-		unset($config);
+		$this->config = config::read('courseprotocol');
 	}
 
 	/**
@@ -142,5 +139,5 @@ class cp_admin_prefs_sidebox_hooks
      static function group_acl($args)
      {
          return true;
-      }
+	 }
 }
