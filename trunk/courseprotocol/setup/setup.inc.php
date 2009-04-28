@@ -45,9 +45,9 @@ $setup_info['courseprotocol']['note'] =
 
 
 /* The hooks this app includes, needed for hooks registration */
-$setup_info['courseprotocol']['hooks']['preferences'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
-$setup_info['courseprotocol']['hooks']['settings'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.settings';
-$setup_info['courseprotocol']['hooks']['admin'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
-$setup_info['courseprotocol']['hooks']['sidebox_menu'] = 'courseprotocol'.'.cp_admin_prefs_sidebox_hooks.all_hooks';
-$setup_info['courseprotocol']['hooks']['search_link'] = 'courseprotocol'.'.bocourseprotocol.search_link';
-$setup_info['courseprotocol']['hooks']['group_acl'] = 'cp_admin_prefs_sidebox_hooks::group_acl';
+$setup_info['courseprotocol']['hooks']['preferences'] = 'courseprotocol.cp_admin_prefs_sidebox_hooks.all_hooks';
+$setup_info['courseprotocol']['hooks']['settings'] = 'courseprotocol.cp_admin_prefs_sidebox_hooks.settings';
+$setup_info['courseprotocol']['hooks']['admin'] = 'courseprotocol.cp_admin_prefs_sidebox_hooks.all_hooks';
+$setup_info['courseprotocol']['hooks']['sidebox_menu'] = 'courseprotocol.cp_admin_prefs_sidebox_hooks.all_hooks';
+$setup_info['courseprotocol']['hooks']['search_link'] = 'courseprotocol.bocourseprotocol.search_link';
+$setup_info['courseprotocol']['hooks']['group_acl'] = 'courseprotocol.cp_admin_prefs_sidebox_hooks.group_acl';
