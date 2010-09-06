@@ -129,3 +129,9 @@ function courseprotocol_upgrade1_5_010()
 {
 	return $GLOBALS['setup_info']['courseprotocol']['currentver'] = '1.6';
 }
+
+
+function courseprotocol_upgrade1_6()
+{
+	return $GLOBALS['setup_info']['courseprotocol']['currentver'] = '1.8';
+}
