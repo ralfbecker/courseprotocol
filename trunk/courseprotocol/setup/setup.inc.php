@@ -13,7 +13,7 @@
 
 $setup_info['courseprotocol']['name']      = 'courseprotocol';
 $setup_info['courseprotocol']['title']     = 'Course Protocol';
-$setup_info['courseprotocol']['version']   = '1.6';
+$setup_info['courseprotocol']['version']   = '1.8';
 $setup_info['courseprotocol']['app_order'] = 100;     // at the end
 $setup_info['courseprotocol']['tables']    = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ'); // if there are any
 $setup_info['courseprotocol']['enable']    = 1;
@@ -27,11 +27,11 @@ $setup_info['courseprotocol']['author'] = $setup_info['courseprotocol']['maintai
 /* Dependencies for this app to work */
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'phpgwapi',
-		'versions' => Array('1.5','1.6','1.7')
+		'versions' => Array('1.7','1.8','1.9')
 	);
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'etemplate',
-		'versions' => Array('1.5','1.6','1.7')
+		'versions' => Array('1.7','1.8','1.9')
 	);
 $setup_info['courseprotocol']['tables'] = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ');
 
