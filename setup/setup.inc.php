@@ -27,11 +27,11 @@ $setup_info['courseprotocol']['author'] = $setup_info['courseprotocol']['maintai
 /* Dependencies for this app to work */
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'phpgwapi',
-		'versions' => Array('1.7','1.8','1.9')
+		'versions' => Array('1.9','14.1')
 	);
 $setup_info['courseprotocol']['depends'][] = array(
 		'appname'  => 'etemplate',
-		'versions' => Array('1.7','1.8','1.9')
+		'versions' => Array('1.9','14.1')
 	);
 $setup_info['courseprotocol']['tables'] = array('egw_courseprotocol','egw_courseprotocol_extra','egw_courseprotocol_occ');
 
