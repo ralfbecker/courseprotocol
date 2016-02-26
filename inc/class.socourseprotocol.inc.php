@@ -1,5 +1,4 @@
 <?php
-include_once(EGW_INCLUDE_ROOT . '/etemplate/inc/class.so_sql.inc.php');
 
 /**
  * General storage class for test (database)
@@ -16,16 +15,16 @@ class socourseprotocol extends so_sql
 	 */
 	var $extra_table='egw_courseprotocol_extra';
 
-	function socourseprotocol()
+	function __construct()
 	{
-		$this->so_sql('courseprotocol','egw_courseprotocol');
+		parent::__construct('courseprotocol','egw_courseprotocol');
 		//$this->empty_on_write = "''";
-		
+
 		$this->occ = new so_sql('courseprotocol','egw_courseprotocol_occ');
-		
-		
+
+
 	}
-	
+
 	/**
 	 * query rows for the nextmatch widget
 	 *
@@ -33,7 +32,7 @@ class socourseprotocol extends so_sql
 	 *	For other keys like 'filter', 'cat_id' you have to reimplement this method in a derived class.
 	 * @param array &$rows returned rows/competitions
 	 * @param array &$readonlys eg. to disable buttons based on acl, not use here, maybe in a derived class
-	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or 
+	 * @param string $join='' sql to do a join, added as is after the table-name, eg. ", table2 WHERE x=y" or
 	 *	"LEFT JOIN table2 ON (x=y)", Note: there's no quoting done on $join!
 	 * @return int total number of rows
 	 */
@@ -55,7 +54,7 @@ class socourseprotocol extends so_sql
 		}
 		return parent::get_rows($query,$rows,$readonlys,$join);
 	}
-	
+
 	/**
 	 * searches db for rows matching searchcriteria
 	 *
@@ -64,7 +63,7 @@ class socourseprotocol extends so_sql
 	 * For a union-query you call search for each query with $start=='UNION' and one more with only $order_by and $start set to run the union-query.
 	 *
 	 * @param array/string $criteria array of key and data cols, OR a SQL query (content for WHERE), fully quoted (!)
-	 * @param boolean/string/array $only_keys=true True returns only keys, False returns all cols. or 
+	 * @param boolean/string/array $only_keys=true True returns only keys, False returns all cols. or
 	 *	comma seperated list or array of columns to return
 	 * @param string $order_by='' fieldnames + {ASC|DESC} separated by colons ',', can also contain a GROUP BY (if it contains ORDER BY)
 	 * @param string/array $extra_cols='' string or array of strings to be added to the SELECT, eg. "count(*) as num"
@@ -88,7 +87,7 @@ class socourseprotocol extends so_sql
 		$extra_cols[].= " (SELECT SUBSTRING(cp_occ_desc,1,50) FROM {$this->occ->table_name} WHERE {$this->occ->table_name}.cp_id=$this->table_name.cp_id LIMIT 1) AS occurences_txt";
 		return parent::search($criteria,$only_keys,$order_by,$extra_cols,$wildcard,$empty,$op,$start,$filter,$join,$need_full_no_count);
 	}
-	
+
 	function save($keys=null)  // did _not_ ensure ACL
 	{
 		if (!($err = parent::save($keys)))
@@ -100,7 +99,7 @@ class socourseprotocol extends so_sql
 					continue;	// no customfield
 				}
 				$this->data[$key] = $val;	// update internal data
-				
+
 				$this->db->insert($this->extra_table,array(
 						'cp_extra_value'  =>$val
 					),array(
@@ -121,12 +120,12 @@ class socourseprotocol extends so_sql
 		}
 		return $err;
 	}
-	
+
 	function occ_set($occ)
 	{
 		return $occ['cp_occ_desc'] && $occ['cp_occ_date'];
 	}
-	
+
 	function read($keys)
 	{
 		if (($ret = parent::read($keys)))
@@ -142,11 +141,11 @@ class socourseprotocol extends so_sql
 		}
 		return $ret ? $this->data : $ret;
 	}
-	
+
 	function data_merge($new)
 	{
 		parent::data_merge($new);
-		
+
 		foreach($new as $key => $val)
 		{
 			if ($key[0] == '#') $this->data[$key] = $val;

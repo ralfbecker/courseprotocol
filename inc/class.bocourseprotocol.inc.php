@@ -55,9 +55,9 @@ require_once(EGW_INCLUDE_ROOT.'/courseprotocol/inc/class.socourseprotocol.inc.ph
 
 	var $customfields=array();
 
-    function bocourseprotocol()
+    function __construct()
     {
-	    $this->socourseprotocol();
+	    parent::__construct();
 
 		$this->tz_offset_s = $GLOBALS['egw']->datetime->tz_offset;
 		$this->now = time() + $this->tz_offset_s;	// time() is server-time and we need a user-time

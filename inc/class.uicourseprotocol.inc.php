@@ -23,7 +23,7 @@ class uicourseprotocol extends bocourseprotocol
 		reload the form, via href/link.
 	*/
 
-	function uicourseprotocol()
+	function __construct()
 	{
 		$GLOBALS['egw_info']['flags']['app_header']=lang('Courseprotocol');
 		// instantiation of etemplate as class variable
@@ -33,8 +33,7 @@ class uicourseprotocol extends bocourseprotocol
 			none the less, we have to call the constructor of that class, to ensure, everything
 			done there is done as we call the uicourseprotocol class
 		*/
-		//$this->bo   =& CreateObject('test.bocourseprotocol');
-		$this->bocourseprotocol();
+		parent::__construct();
 	}
 
 
