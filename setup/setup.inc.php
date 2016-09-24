@@ -11,6 +11,9 @@
  * @version $Id: setup.inc.php 23739 2007-10-15 09:10:36Z StefanBecker $
  */
 
+// do NOT intall by default
+$setup_info['courseprotocol']['only_db']   = array('none');
+
 $setup_info['courseprotocol']['name']      = 'courseprotocol';
 $setup_info['courseprotocol']['title']     = 'Course Protocol';
 $setup_info['courseprotocol']['version']   = '1.8';
